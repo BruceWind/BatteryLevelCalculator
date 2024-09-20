@@ -16,7 +16,8 @@ const translations = {
     ninev: "9V Alkaline",
     calculate: "Calculate Charge",
     estimatedCharge: "Estimated charge:",
-    unknown: "Unknown"
+    unknown: "Unknown",
+    voltageOutOfRange: "The entered voltage is out of the expected range for this battery type."
   },
   zh: {
     title: "电池电压计算器",
@@ -31,9 +32,15 @@ const translations = {
     ninev: "9V碱性电池",
     calculate: "估算电量",
     estimatedCharge: "估计剩余电量:",
-    unknown: "未知"
+    unknown: "未知",
+    voltageOutOfRange: "输入的电压超出了该电池类型的预期范围。"
   }
 };
+
+// 添加这个函数在组件外部
+function interpolate(x: number, x1: number, y1: number, x2: number, y2: number): number {
+  return y1 + (x - x1) * (y2 - y1) / (x2 - x1);
+}
 
 export default function Home({ params: { lang } }: { params: { lang: 'en' | 'zh' } }) {
   const t = translations[lang];
@@ -72,51 +79,40 @@ export default function Home({ params: { lang } }: { params: { lang: 'en' | 'zh'
     }
 
     const v = parseFloat(voltage);
-    let charge = '';
+    let charge: number;
 
-    switch(batteryType) {
-      case 'alkaline':
-      case 'carbon':
-        if (v >= 1.5) charge = '100%';
-        else if (v >= 1.4) charge = '75%';
-        else if (v >= 1.3) charge = '50%';
-        else if (v >= 1.2) charge = '25%';
-        else charge = '0%';
-        break;
-      case 'lithium':
-        if (v >= 4.2) charge = '100%';
-        else if (v >= 3.9) charge = '75%';
-        else if (v >= 3.7) charge = '50%';
-        else if (v >= 3.5) charge = '25%';
-        else charge = '0%';
-        break;
-      case 'leadAcid':
-      case 'deepCycle':
-        if (v >= 12.7) charge = '100%';
-        else if (v >= 12.4) charge = '75%';
-        else if (v >= 12.2) charge = '50%';
-        else if (v >= 12.0) charge = '25%';
-        else charge = '0%';
-        break;
-      case 'nimh':
-        if (v >= 1.4) charge = '100%';
-        else if (v >= 1.3) charge = '75%';
-        else if (v >= 1.2) charge = '50%';
-        else if (v >= 1.1) charge = '25%';
-        else charge = '0%';
-        break;
-      case 'ninev':
-        if (v >= 9.6) charge = '100%';
-        else if (v >= 9.2) charge = '75%';
-        else if (v >= 8.8) charge = '50%';
-        else if (v >= 8.4) charge = '25%';
-        else charge = '0%';
-        break;
-      default:
-        charge = t.unknown;
+    const batteryProfiles = {
+      alkaline: { min: 0.9, max: 1.6, alert: { min: 0.8, max: 1.7 } },
+      carbon: { min: 0.8, max: 1.6, alert: { min: 0.7, max: 1.7 } },
+      lithium: { min: 3.0, max: 4.2, alert: { min: 2.8, max: 4.3 } },
+      leadAcid: { min: 10.5, max: 12.7, alert: { min: 10.0, max: 13.0 } },
+      deepCycle: { min: 10.5, max: 12.7, alert: { min: 10.0, max: 13.0 } },
+      nimh: { min: 1.0, max: 1.4, alert: { min: 0.9, max: 1.5 } },
+      ninev: { min: 7.2, max: 9.6, alert: { min: 7.0, max: 9.8 } },
+    };
+
+    const profile = batteryProfiles[batteryType as keyof typeof batteryProfiles];
+
+    if (!profile) {
+      setEstimatedCharge(t.unknown);
+      return;
     }
 
-    setEstimatedCharge(charge);
+    if (v < profile.alert.min || v > profile.alert.max) {
+      alert(t.voltageOutOfRange);
+      setEstimatedCharge(t.unknown);
+      return;
+    }
+
+    if (v >= profile.max) {
+      charge = 100;
+    } else if (v <= profile.min) {
+      charge = 0;
+    } else {
+      charge = interpolate(v, profile.min, 0, profile.max, 100);
+    }
+
+    setEstimatedCharge(`${Math.round(charge)}%`);
   };
 
   return (
