@@ -1,23 +1,54 @@
-# 电池电量计算器
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 电池类型概述
+## Getting Started
 
-电池可分为可充电和不可充电两大类。常见的额定电压包括1.5V、3.7V、12V和36V等。
+First, run the development server:
 
-## 电池电量与电压对照表
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-下表列出了不同类型电池在不同电量状态下的大致电压值：
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-| 电池类型 | 额定电压 | 100% 电量电压 | 50% 电量电压 | 30% 电量电压 |
-|---------|---------|--------------|--------------|--------------|
-| 碱性电池（不可充） | 1.5V | 1.5-1.6V | 约1.4V | 约1.3V |
-| 镍氢电池（可充） | 1.2V | 1.4-1.45V | 约1.25V | 约1.2V |
-| 锂离子电池 | 3.7V | 4.2V | 约3.7-3.8V | 约3.6-3.7V |
-| 铅酸电池 | 12V | 12.6-12.8V | 约12.2V | 约12.0V |
-| 锂电池组 | 36V | 42-42.5V | 约37-38V | 约36-37V |
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-注：此表格提供的是近似值，实际电压可能因电池品质、使用环境等因素略有差异。
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 使用说明
+## Learn More
 
-本电池电量计算器可根据测量的电池电压，估算出当前电池的大致电量百分比。请根据您的电池类型和测得的电压，参考上表进行判断。
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Cloudflare Pages
+
+To deploy this Next.js project on Cloudflare Pages, follow these steps:
+
+1. Push your project to a GitHub repository.
+
+2. Log in to your Cloudflare account and go to the Pages section.
+
+3. Click on "Create a project" and select your GitHub repository.
+
+4. Configure your build settings:
+   - Framework preset: Next.js
+   - Build command: `npm run build`
+   - Build output directory: `.next`
+
+5. Add the following environment variables:
+   - `NODE_VERSION`: Set to `16` or higher
+   - `NPM_VERSION`: Set to `8` or higher
+
+6. Click "Save and Deploy" to start the deployment process.
+
+7. Once deployed, Cloudflare will provide you with a URL for your site.
+
