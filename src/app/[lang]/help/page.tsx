@@ -1,4 +1,7 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+
+const LeadAcidBatteryChart = dynamic(() => import('@/components/LeadAcidBatteryChart'), { ssr: false });
 
 export const metadata: Metadata = {
   title: 'Help | 帮助',
@@ -35,6 +38,7 @@ const translations = {
     ],
     note: "Note: These values are approximate and may vary slightly depending on the specific battery and conditions.",
     accuracy: "For the most accurate results, always use a reliable voltmeter and ensure the battery has been at rest (not charging or discharging) for at least a few hours before measuring.",
+    leadAcidChartTitle: "Lead Acid Battery Voltage Chart",
   },
   zh: {
     title: "帮助 - 电池电压计算器",
@@ -66,6 +70,7 @@ const translations = {
     ],
     note: "注意：这些数值是近似值，可能会因具体电池和条件而略有不同。",
     accuracy: "为获得最准确的结果，请始终使用可靠的电压表，并确保在测量前电池已经静置（未充电或放电）至少几个小时。",
+    leadAcidChartTitle: "铅酸电池电压图表",
   }
 };
 
@@ -98,6 +103,9 @@ export default function Help({ params: { lang } }: { params: { lang: 'en' | 'zh'
           <li key={index} className="mb-1">{item}</li>
         ))}
       </ul>
+
+      <h2 className="text-2xl font-bold mb-2" dangerouslySetInnerHTML={{__html: t.leadAcidChartTitle}}></h2>
+      <LeadAcidBatteryChart />
 
       <p className="mb-2">{t.note}</p>
       <p>{t.accuracy}</p>
