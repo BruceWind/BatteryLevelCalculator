@@ -8,9 +8,12 @@ const translations = {
     voltageInput: "Enter voltage (V)",
     batteryType: "Select battery type",
     alkaline: "Alkaline (1.5V)",
+    carbon: "Carbon-zinc (1.5V)",
     lithium: "Lithium-ion (3.7V)",
     leadAcid: "Lead Acid (12V)",
     deepCycle: "Deep Cycle (12V)",
+    nimh: "NiMH (1.2V)",
+    ninev: "9V Alkaline",
     calculate: "Calculate Charge",
     estimatedCharge: "Estimated charge:",
     unknown: "Unknown"
@@ -20,9 +23,12 @@ const translations = {
     voltageInput: "输入电压 (V)",
     batteryType: "选择电池类型",
     alkaline: "碱性电池 (1.5V)",
+    carbon: "碳性电池 (1.5V)",
     lithium: "锂离子电池 (3.7V)",
     leadAcid: "铅酸电池 (12V)",
     deepCycle: "深循环电池 (12V)",
+    nimh: "镍氢电池 (1.2V)",
+    ninev: "9V碱性电池",
     calculate: "估算电量",
     estimatedCharge: "估计剩余电量:",
     unknown: "未知"
@@ -59,9 +65,12 @@ export default function Home({ params: { lang } }: { params: { lang: 'en' | 'zh'
         >
           <option value="">{t.batteryType}</option>
           <option value="alkaline">{t.alkaline}</option>
+          <option value="carbon">{t.carbon}</option>
           <option value="lithium">{t.lithium}</option>
           <option value="leadAcid">{t.leadAcid}</option>
           <option value="deepCycle">{t.deepCycle}</option>
+          <option value="nimh">{t.nimh}</option>
+          <option value="ninev">{t.ninev}</option>
         </select>
         <button
           onClick={estimateCharge}

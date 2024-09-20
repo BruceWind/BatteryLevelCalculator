@@ -20,9 +20,17 @@ export default function Header({ lang }: { lang: 'en' | 'zh' }) {
   return (
     <header className="bg-green-600 text-white p-4 shadow-md">
       <nav className="container mx-auto flex justify-between items-center">
-        <Link href={`/${lang}`} className="text-xl font-bold hover:text-green-200 flex items-center">
-          <Image src="/battery-icon.png" alt="Battery Icon" width={24} height={24} className="mr-2" />
-          {lang === 'en' ? 'Battery Calculator' : '电池计算器'}
+        <Link href={`/${lang}`} className="flex items-center hover:text-green-200">
+          <Image 
+            src="/android-chrome-192x192.png" 
+            alt="Battery Calculator Logo" 
+            width={40} 
+            height={40} 
+            className="mr-2"
+          />
+          <span className="text-xl font-bold">
+            {lang === 'en' ? 'Battery Calculator' : '电池计算器'}
+          </span>
         </Link>
         <ul className="flex space-x-4">
           <li><Link href={`/${lang}`} className="hover:text-green-200">{t.home}</Link></li>
