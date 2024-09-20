@@ -18,7 +18,7 @@ export default function Header({ lang }: { lang: 'en' | 'zh' }) {
   const t = translations[lang];
 
   return (
-    <header className="bg-green-600 text-white p-4 shadow-md">
+    <header className="bg-green-600 dark:bg-green-800 text-white p-4 shadow-md">
       <nav className="container mx-auto flex justify-between items-center">
         <Link href={`/${lang}`} className="flex items-center hover:text-green-200">
           <Image 
