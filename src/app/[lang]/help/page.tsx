@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const LeadAcidBatteryChart = dynamic(() => import('@/components/LeadAcidBatteryChart'), { ssr: false });
-
+export const runtime = 'edge';
 export const metadata: Metadata = {
   title: 'Help | 帮助',
 };

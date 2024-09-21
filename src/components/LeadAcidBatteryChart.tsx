@@ -15,20 +15,20 @@ const LeadAcidBatteryChart: React.FC = () => {
         height: 300,
         data: {
           values: [
-            {voltage: 11.8, charge: 0},
-            {voltage: 12.0, charge: 25},
-            {voltage: 12.2, charge: 50},
-            {voltage: 12.4, charge: 75},
-            {voltage: 12.7, charge: 100}
+            { voltage: 11.8, charge: 0 },
+            { voltage: 12.0, charge: 25 },
+            { voltage: 12.2, charge: 50 },
+            { voltage: 12.4, charge: 75 },
+            { voltage: 12.7, charge: 100 }
           ]
         },
         mark: {
-          type: 'line',
+          type: 'line' as const, // Explicitly cast to the correct type
           point: true
         },
         encoding: {
-          x: {field: 'voltage', type: 'quantitative', title: 'Voltage (V)'},
-          y: {field: 'charge', type: 'quantitative', title: 'Charge (%)'}
+          x: { field: 'voltage', type: 'quantitative' as const, title: 'Voltage (V)' }, // Cast to the correct type
+          y: { field: 'charge', type: 'quantitative' as const, title: 'Charge (%)' } // Cast to the correct type
         }
       };
 

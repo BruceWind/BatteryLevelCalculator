@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-
+export const runtime = 'edge';
 const translations = {
   en: {
     title: "Battery Voltage Calculator",

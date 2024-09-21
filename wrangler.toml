@@ -1,0 +1,4 @@
+name = "batterylevelcalculator"
+compatibility_date = "2024-09-21"  # 设置为当前日期
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
