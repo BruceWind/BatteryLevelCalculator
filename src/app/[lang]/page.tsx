@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 export const runtime = 'edge';
+
+
 const translations = {
   en: {
     title: "Battery Voltage Calculator",
@@ -36,7 +38,6 @@ const translations = {
     voltageOutOfRange: "输入的电压超出了该电池类型的预期范围。"
   }
 };
-
 // 添加这个函数在组件外部
 function interpolate(x: number, x1: number, y1: number, x2: number, y2: number): number {
   return y1 + (x - x1) * (y2 - y1) / (x2 - x1);
@@ -125,20 +126,18 @@ export default function Home({ params: { lang } }: { params: { lang: 'en' | 'zh'
           onChange={handleVoltageChange}
           placeholder={t.voltageInput}
           pattern="^\d*\.?\d*$"
-          className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
-            isDarkMode 
-              ? 'bg-gray-700 text-white border-gray-600 focus:ring-green-500' 
-              : 'bg-white text-gray-700 border-gray-300 focus:ring-green-500'
-          }`}
+          className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${isDarkMode
+            ? 'bg-gray-700 text-white border-gray-600 focus:ring-green-500'
+            : 'bg-white text-gray-700 border-gray-300 focus:ring-green-500'
+            }`}
         />
         <select
           value={batteryType}
           onChange={(e) => setBatteryType(e.target.value)}
-          className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${
-            isDarkMode 
-              ? 'bg-gray-700 text-white border-gray-600 focus:ring-green-500' 
-              : 'bg-white text-gray-700 border-gray-300 focus:ring-green-500'
-          }`}
+          className={`w-full p-2 border rounded focus:outline-none focus:ring-2 ${isDarkMode
+            ? 'bg-gray-700 text-white border-gray-600 focus:ring-green-500'
+            : 'bg-white text-gray-700 border-gray-300 focus:ring-green-500'
+            }`}
         >
           <option value="">{t.batteryType}</option>
           <option value="alkaline">{t.alkaline}</option>
@@ -151,9 +150,8 @@ export default function Home({ params: { lang } }: { params: { lang: 'en' | 'zh'
         </select>
         <button
           onClick={estimateCharge}
-          className={`w-full p-2 text-white rounded transition duration-300 ${
-            isDarkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'
-          }`}
+          className={`w-full p-2 text-white rounded transition duration-300 ${isDarkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'
+            }`}
         >
           {t.calculate}
         </button>

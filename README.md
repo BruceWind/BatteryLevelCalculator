@@ -42,7 +42,7 @@ To deploy this Next.js project on Cloudflare Pages, follow these steps:
 4. Configure your build settings:
    - Framework preset: Next.js
    - Build command: `npm run build`
-   - Build output directory: `.next`
+   - Build output directory: `.vercel/output/static`
 
 5. Add the following environment variables:
    - `NODE_VERSION`: Set to `16` or higher

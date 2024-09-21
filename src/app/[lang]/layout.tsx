@@ -15,13 +15,24 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// Updated metadata with keywords and description
 export const metadata: Metadata = {
   title: {
     default: "Battery Voltage Calculator | 电池电压计算器",
     template: "%s | Battery Voltage Calculator | 电池电压计算器"
   },
   description: "Calculate battery charge based on voltage. Supports lead acid, deep cycle, and more. 根据电压估算电池剩余电量，支持铅酸电池、深循环电池等多种类型。",
-  keywords: ["battery voltage chart", "lead acid battery", "deep cycle battery", "电池电压表", "铅酸电池", "深循环电池"],
+  keywords: [
+    "battery voltage calculator",
+    "battery charge estimation",
+    "battery voltage chart",
+    "lead acid battery",
+    "deep cycle battery",
+    "电池电压计算器",
+    "电池电量估算",
+    "铅酸电池",
+    "深循环电池"
+  ],
 };
 
 export default function RootLayout({
