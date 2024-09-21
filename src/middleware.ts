@@ -15,6 +15,12 @@ function getLocale(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+
+  // Check for sitemap.xml and robots.txt
+  if (pathname.endsWith('.xml') || pathname.endsWith('.txt')) {
+    return NextResponse.next(); // Do not redirect, continue
+  }
+
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )
